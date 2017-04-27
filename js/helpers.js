@@ -23,3 +23,37 @@ function sendMessage(message, owner = 0, icon = '', type = 'normal') {
         scrollToContainer.offset().top - mainContainer.offset().top + mainContainer.scrollTop()
     )
 }
+
+class Member {
+    constructor(n, q) {
+        this.qlist = []
+        this.nqlist = []
+        this.add(n, q)
+    }
+    add(n, q) {
+        if (q)
+            this.qlist.push(n)
+        else
+            this.nqlist.push(n)
+        return this
+    }
+    printQ () {
+        return this.qlist
+    }
+    printNQ () {
+        return this.nqlist
+    }
+    print () {
+        let nq = this.nqlist.toString()
+        return this.qlist + nq.length?'':',' + nq
+    }
+    printInAndOut () {
+        let aq='' + this.qlist
+        let anq = '' + this.nqlist
+        let q = ''+ aq + (aq.length?'走进电梯':'')
+        let nq = ''+ anq + (anq.length?'走出电梯':'')
+        let s = q + (anq.length>0?'，':'') + nq + '。'
+        return s
+
+    }
+}

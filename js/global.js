@@ -17,6 +17,7 @@ var gv = {
     ev: {}, // 电梯变量
     isOnColdDown: false, // 为了防止按键过快
     coldDownTime: 200,   // 冷却时间：200ms
+    waitingAnim: ["fa fa-hourglass", 'fa fa-hourglass-1', 'fa fa-hourglass-2', 'fa fa-hourglass-3'],    // QUESTIONING时加载动画序列
     names: {
         last: ['朱', '颜', '杜', '吕', '蒋', '王', '张', '陈', '莫', '金', '谢', '薛', '江', '胡', '毛', '应', '鹿', '钱', "马", '梁', "袁",
             '季', '范', '牛', '李', '林', '顾', '高', '兰', '邱'],

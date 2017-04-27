@@ -27,6 +27,7 @@ function closeDoor(i) { // 关门动画
 
 function userOut(i, isTimeout = true, remain = false) { // 角色离开
     let floor = gv.ev[i].floor
+    let isOnWait = !(gv.isOnWait[i].up || gv.isOnWait[i].down)
     setTimeout(() => {
         if (!remain) {
             $('#user-' + i).animate({
@@ -34,8 +35,8 @@ function userOut(i, isTimeout = true, remain = false) { // 角色离开
                 opacity: '0'
             }, 1000)
         }
-        if (!(gv.isOnWait[i].up || gv.isOnWait[i].down)) {
-            $('#floor-man-' + gv.ev[i].floor).fadeIn(1000)
+        if (isOnWait) {
+            $('#floor-man-' + floor).fadeIn(1000)
             setTimeout(() => {
                 $('#floor-man-' + floor).fadeOut(1000)
             }, 1000)
@@ -51,9 +52,6 @@ function userIn(i, isTimeout = true, remain = false) {  // 角色进入
                 fontSize: '16px',
                 opacity: '1'
             }, 1000)
-        }
-        if (!(gv.isOnWait[i].up || gv.isOnWait[i].down)) {
-            $('#floor-man-' + floor).fadeOut(1000)
         }
     },isTimeout?3000:0)
 }
@@ -95,17 +93,17 @@ function updatePointerAnim(i) { // 指示符动画（指示符不断变化）
     switch (gv.ev[i].state) {
         case 1:
             setTimeout(()=>{
-                pointer.html('<i class="fa fa-angle-up"></i>');
+                pointer.find('i').attr('class','fa fa-angle-up')
                 setTimeout(()=>{
-                    pointer.html('<i class="fa fa-angle-double-up"></i>');
+                    pointer.find('i').attr('class','fa fa-angle-double-up')
                 }, 333)
             }, 333)
             break
         case 2:
             setTimeout(()=>{
-                pointer.html('<i class="fa fa-angle-down"></i>');
-                setTimeout(()=> {
-                    pointer.html('<i class="fa fa-angle-double-down"></i>');
+                pointer.find('i').attr('class','fa fa-angle-down')
+                setTimeout(()=>{
+                    pointer.find('i').attr('class','fa fa-angle-double-down')
                 }, 333)
             }, 333)
             break
@@ -116,21 +114,31 @@ function updatePointer(i){  // 更新指示符
     var pointer = $('#elevator-pointer-' + i)
     switch (gv.ev[i].state) {
         case 0:
-            pointer.html('<i class="fa fa-circle"></i>')
+            pointer.find('i').attr('class','fa fa-circle')
             break
         case 1:
-            pointer.html('<i class="fa fa-chevron-up"></i>');
+            pointer.find('i').attr('class','fa fa-chevron-up')
             break
         case 2:
-            pointer.html('<i class="fa fa-chevron-down"></i>');
+            pointer.find('i').attr('class','fa fa-chevron-down')
             break
         case 3:
-            pointer.html('<i class="fa fa-close"></i>')
+            pointer.find('i').attr('class','fa fa-close')
             break
     }
     if (gv.ev[i].questioning) {
-        pointer.html(pointer.html() + ' <i class="fa fa-hourglass-2"></i>')
+        console.log('hi')
+        waitingAnim(i, pointer, 0)
         $('#elevator-card-'+i).addClass('elevator-card-active')
+    }
+}
+
+function waitingAnim(i, pointer, num) {
+    if (gv.ev[i].questioning) {
+        pointer.find('span').attr('class',gv.waitingAnim[num])
+        setTimeout(()=>{waitingAnim(i, pointer, (num)%3+1)}, 300)
+    } else {
+        pointer.find('span').attr('class',"fa")
     }
 }
 
@@ -175,5 +183,10 @@ function removeButtonColor(floor, direction) {
         let dom = $('#down-button-' + floor)
         dom.removeClass("down-button-request")
         dom.removeClass("down-button-active")
+    }
+    if (!(gv.isOnWait[floor].up || gv.isOnWait[floor].down)) {
+        setTimeout(()=>{
+            $('#floor-man-' + floor).fadeOut(1000)
+        },3000)
     }
 }

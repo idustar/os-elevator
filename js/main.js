@@ -36,7 +36,8 @@ function init() {
     for (let i=1; i<=gv.elevator; i++) {
         gv.ev[i] = new Elevator(i)
         let code = '<div class="elevator-route"><div class="elevator-card" id="elevator-card-'+i+'"><div ' +
-            'class="elevator-pointer tc-'+i+'" id="elevator-pointer-'+i+'"><i class="fa fa-circle"></i></div><di' +
+            'class="elevator-pointer tc-'+i+'" id="elevator-pointer-'+i+'"><i class="fa fa-circle"></i>' +
+            '<span class="fa"></span></div><di' +
             'v class="elevator-counter  bg-'+i+'" id="elevator-counter-'+i+'">' +
             '<div class="elevator-count" id="elevator-count-'+i+'">1</div>' +
             '</div><div class="elevator-item"><div class="elevator-door-left bg-'+i+'" id="elevator-door-left-'+i+'">' +

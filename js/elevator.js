@@ -41,15 +41,17 @@ class Elevator {
                     // 改变状态，调用询问
                     this.state = this.request.get(this.floor).direction
                     this.questioning = true
-                    question(this.id, this.floor, this.request.get(this.floor).direction, this.request.get(this.floor).member)
+                    updatePointer(this.id)
+                    question(this.id, this.floor, this.request.get(this.floor).direction,
+                        this.request.get(this.floor).member.printQ())
                     // 显示开门、进人动画
                     setTimeout(()=>{openDoor(this.id)},1000)
-                    userIn(this.id, true, this.queue.size() > 1 ? true : false)
+                    userIn(this.id, true, this.request.size > 1 ? true : false)
                     this.openRemain = 3
                     // 恢复外部按钮
                     this.removeOutSideButtonAttr(this.request.get(this.queue.tail()))
                     sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+
-                        this.request.get(this.queue.tail()).member+'进入电梯。', this.id,"fa fa-arrow-left",'enter')
+                        this.request.get(this.queue.tail()).member.printInAndOut(), this.id,"fa fa-arrow-left",'enter')
 
                     this.queue.pop()
                     this.request.delete(this.floor)
@@ -81,14 +83,16 @@ class Elevator {
             if (rq && rq.question) {
                 // 进电梯
                 this.removeOutSideButtonAttr(rq)
-                sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member+'进入电梯。', this.id,"fa fa-arrow-left",'enter')
-                userIn(this.id, true, this.queue.size() > 1 ? true : false)
+                sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，' + rq.member.printInAndOut(),
+                    this.id,"fa fa-arrow-left",'enter')
+                userIn(this.id, true, this.request.size > 1 ? true : false)
                 this.questioning = true
-                question(this.id, this.floor, rq.direction, rq.member)
+                question(this.id, this.floor, rq.direction, rq.member.printQ())
             } else {
                 // 出电梯
-                sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member+'走出电梯。', this.id,"fa fa-arrow-right",'leave')
-                userOut(this.id, true, this.queue.size() > 1 ? true : false)
+                sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，' + rq.member.printNQ() +'走出电梯。',
+                    this.id,"fa fa-arrow-right",'leave')
+                userOut(this.id, true, (this.request.size > 1 ? true : false))
 
             }
             if (this.floor === this.queue.tail()) {
@@ -114,14 +118,14 @@ class Elevator {
             let rq = this.request.get(this.floor)
             if (rq && rq.question) {
                 this.removeOutSideButtonAttr(rq)
-                sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member+'进入电梯。', this.id, "fa fa-arrow-left",'enter')
-                userIn(this.id, true, this.queue.size() > 1 ? true : false)
+                sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member.printInAndOut(), this.id, "fa fa-arrow-left",'enter')
+                userIn(this.id, true, this.request.size > 1 ? true : false)
                 this.questioning = true
 
-                question(this.id, this.floor, rq.direction, rq.member)
+                question(this.id, this.floor, rq.direction, rq.member.printQ())
             } else {
-                sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member+'走出电梯。', this.id, "fa fa-arrow-right",'leave')
-                userOut(this.id, true, this.queue.size() > 1 ? true : false)
+                sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member.printNQ()+'走出电梯。', this.id, "fa fa-arrow-right",'leave')
+                userOut(this.id, true, (this.request.size > 1 ? true : false))
             }
             if (this.floor === this.queue.tail()) {
                 this.queue.pop();
@@ -140,12 +144,12 @@ class Elevator {
         // 是否已存在该楼层相关请求
         if (this.request.has(r.floor)) {
             let rq = this.request.get(r.floor)
-            let members = [rq.member, r.name]   // 成员叠加
+            let members = rq.member.add(r.name, qs)
             let dir = Math.max(r.direction, rq.direction)
             this.request.set(r.floor, {member: members, direction: dir, question: qs | rq.question})    // 合并信息
         }
         else {
-            let members = [r.name]
+            let members = new Member(r.name, qs)
             this.request.set(r.floor, {member: members, direction: r.direction, question: qs})
         }
         // 改变按钮样式
@@ -214,7 +218,7 @@ class Elevator {
             var that = this
             this.request.forEach(function(value, key, map=this.request) {
                 if (value.question) {
-                    gv.queue.push({name: value.member, floor: key, direction: value.direction})
+                    gv.queue.push({name: value.member.printQ(), floor: key, direction: value.direction})
                     that.queue.removeByValue(key)
                     that.request.delete(key)
                 }
