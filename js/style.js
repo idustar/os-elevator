@@ -127,7 +127,6 @@ function updatePointer(i){  // 更新指示符
             break
     }
     if (gv.ev[i].questioning) {
-        console.log('hi')
         waitingAnim(i, pointer, 0)
         $('#elevator-card-'+i).addClass('elevator-card-active')
     }
