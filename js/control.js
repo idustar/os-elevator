@@ -1,14 +1,25 @@
 /**
  * Created by dustar on 2017/4/27.
+ *
+ * control.js - 控制实现
  */
 
 // 上行键
 function up(f) {
+    if (gv.isOnColdDown) {
+        sendMessage( '操作过快，眨个眼再继续吧。', 0, 'fa fa-ban', 'normal')
+        return
+    }
+    coldDown()  // 冷却
     if (!gv.isOnWait[f].up) {
         let n = buildName()
         gv.isOnWait[f].up = true    // 按钮已被按下，正在等待请求处理
         $('#floor-man-'+ f).fadeIn(1000)
         $('#up-button-' + f).addClass("up-button-active")
+        $('#up-button-' + f).children().addClass('fa-spinner')
+        setTimeout(()=>{
+            $('#up-button-' + f).children().removeClass('fa-spinner')
+        }, 1000)
         gv.queue.push({name: n, floor: f, direction: Enum.StateType.Up})    // 加入请求队列
         sendMessage( n + '在 ' + f + ' 楼按下上行键，请稍作等待。', 0, 'fa fa-arrow-up', 'up')
     }
@@ -16,11 +27,20 @@ function up(f) {
 
 // 下行键
 function down(f) {
+    if (gv.isOnColdDown) {
+        sendMessage( '操作过快，眨个眼再继续吧。', 0, 'fa fa-ban', 'normal')
+        return
+    }
+    coldDown()  // 冷却
     if (!gv.isOnWait[f].down) {
         let n = buildName()
         gv.isOnWait[f].down = true
         $('#floor-man-'+ f).fadeIn(1000)
         $('#down-button-' + f).addClass("down-button-active")
+        $('#down-button-' + f).children().addClass('fa-spinner')
+        setTimeout(()=>{
+            $('#down-button-' + f).children().removeClass('fa-spinner')
+        }, 1000)
         gv.queue.push({name: n, floor: f, direction: Enum.StateType.Down})
         sendMessage(n + '在 ' + f + ' 楼按下下行键，请稍作等待。', 0, 'fa fa-arrow-down', 'down')
     }
@@ -87,4 +107,11 @@ function question(id, from, state, members) {   // 询问楼层（当角色进�
         stack: gv.elevator,
         hideAfter: false
     })
+}
+
+function coldDown() {
+    gv.isOnColdDown = true
+    setTimeout(()=>{
+        gv.isOnColdDown = false
+    }, gv.coldDownTime)
 }

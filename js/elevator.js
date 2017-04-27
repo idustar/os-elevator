@@ -37,14 +37,14 @@ class Elevator {
                     sendMessage(this.id + ' 号电梯加足马力开始工作了。', this.id, 'fa fa-play-circle-o', 'start')
                 }
                 // 如果本层楼即为请求目标（一般为当前所停楼层有人按外部按钮）
-                if (this.queue.tail() === this.floor && this.request.get(this.floor).question) {
+                if (this.queue.tail() === this.floor && this.request.size > 0 && this.request.get(this.floor).question) {
                     // 改变状态，调用询问
                     this.state = this.request.get(this.floor).direction
                     this.questioning = true
                     question(this.id, this.floor, this.request.get(this.floor).direction, this.request.get(this.floor).member)
                     // 显示开门、进人动画
                     setTimeout(()=>{openDoor(this.id)},1000)
-                    userIn(this.id, true)
+                    userIn(this.id, true, this.queue.size() > 1 ? true : false)
                     this.openRemain = 3
                     // 恢复外部按钮
                     this.removeOutSideButtonAttr(this.request.get(this.queue.tail()))
@@ -66,14 +66,7 @@ class Elevator {
 
     // 恢复外部按钮
     removeOutSideButtonAttr(rq) {
-        if (rq.direction === Enum.StateType.Up) {
-            gv.isOnWait[this.floor].up = false
-            $('#up-button-' + this.floor).removeClass("up-button-active")
-        }
-        else {
-            gv.isOnWait[this.floor].down = false
-            $('#down-button-' + this.floor).removeClass("down-button-active")
-        }
+        removeButtonColor(this.floor, rq.direction)
     }
 
     up() {
@@ -89,13 +82,13 @@ class Elevator {
                 // 进电梯
                 this.removeOutSideButtonAttr(rq)
                 sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member+'进入电梯。', this.id,"fa fa-arrow-left",'enter')
-                userIn(this.id)
+                userIn(this.id, true, this.queue.size() > 1 ? true : false)
                 this.questioning = true
                 question(this.id, this.floor, rq.direction, rq.member)
             } else {
                 // 出电梯
                 sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member+'走出电梯。', this.id,"fa fa-arrow-right",'leave')
-                userOut(this.id)
+                userOut(this.id, true, this.queue.size() > 1 ? true : false)
 
             }
             if (this.floor === this.queue.tail()) {
@@ -113,7 +106,6 @@ class Elevator {
     }
 
     down() {
-        console.log(this.id+this.floor, this.queue, this.request)
         this.floor--
         downAnim(this.id)
         if (this.request.has(this.floor)) {
@@ -123,13 +115,13 @@ class Elevator {
             if (rq && rq.question) {
                 this.removeOutSideButtonAttr(rq)
                 sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member+'进入电梯。', this.id, "fa fa-arrow-left",'enter')
-                userIn(this.id)
+                userIn(this.id, true, this.queue.size() > 1 ? true : false)
                 this.questioning = true
 
                 question(this.id, this.floor, rq.direction, rq.member)
             } else {
                 sendMessage(this.id + ' 号电梯停在 '+this.floor+' 楼，'+rq.member+'走出电梯。', this.id, "fa fa-arrow-right",'leave')
-                userOut(this.id)
+                userOut(this.id, true, this.queue.size() > 1 ? true : false)
             }
             if (this.floor === this.queue.tail()) {
                 this.queue.pop();
@@ -145,24 +137,33 @@ class Elevator {
     }
 
     addRequestFloor(r, qs, isQueue = true) {    // 加入内部请求队列
-        let rq = this.request.get(this.floor)   // 是否已存在该楼层相关请求
-        if (rq) {
+        // 是否已存在该楼层相关请求
+        if (this.request.has(r.floor)) {
+            let rq = this.request.get(r.floor)
             let members = [rq.member, r.name]   // 成员叠加
-            this.request.set(r.floor, {member: members, direction: r.direction, question: qs | rq.question})    // 合并信息
+            let dir = Math.max(r.direction, rq.direction)
+            this.request.set(r.floor, {member: members, direction: dir, question: qs | rq.question})    // 合并信息
         }
         else {
             let members = [r.name]
             this.request.set(r.floor, {member: members, direction: r.direction, question: qs})
         }
+        // 改变按钮样式
+        if (qs)
+            changeButtonColorToRequest(r.floor, r.direction)
         // 判断是否为关键节点
-        if (this.queue.size() === 0 && !((this.queue[0] > r.floor && r.floor > this.floor) ||
-            (this.queue[0] < r.floor && r.floor < this.floor))) {
+        if (this.queue.size() === 0)
+            this.queue.push(r.floor)
+        else {
+            if (this.queue.list[0] >= r.floor && r.floor > this.floor)
+                return
+            if (this.queue.list[0] <= r.floor && r.floor < this.floor)
+                return
             this.queue.push(r.floor)
         }
     }
 
     check(request) {    // 检查当前是否能处理某外界请求
-        console.log(request, this.queue, this.state)
         // 电梯上行、请求上行且在电梯运行区间
         if (request.floor > this.floor && request.floor <= this.queue.tail() &&
             this.state === Enum.StateType.Up && this.request.get(this.queue.tail()).direction !== Enum.StateType.Down
@@ -200,7 +201,7 @@ class Elevator {
             // 修改状态
             this.state = Enum.StateType.Idle
 
-            sendMessage(this.id + ' 号电梯故障排除，可以正常使用了。', 7, 'fa fa-heart-o', 'disemer')
+            sendMessage(this.id + ' 号电梯故障排除，可以正常使用了。', 7, 'fa fa-heart', 'disemer')
         } else {
             // 修改显示
             $('#elevator-emer-'+this.id).children().removeClass('fa-bell')
@@ -210,14 +211,17 @@ class Elevator {
             // 修改状态
             this.state = Enum.StateType.Error
             // 若该状态正在执行某外部请求，则释放其请求队列中所有请求，交由其他电梯处理
+            var that = this
             this.request.forEach(function(value, key, map=this.request) {
                 if (value.question) {
                     gv.queue.push({name: value.member, floor: key, direction: value.direction})
+                    that.queue.removeByValue(key)
+                    that.request.delete(key)
                 }
             })
             // 清空队列
-            this.request.clear()
-            this.queue.clear()
+            //this.request.clear()
+            //this.queue.clear()
 
             sendMessage(this.id + ' 号电梯出现故障，攻城狮正在紧张抢修。', 6, 'fa fa-exclamation-circle','emer')
         }

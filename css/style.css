@@ -91,8 +91,18 @@ html,body{
     color: white;
 }
 .up-button-active:active, .down-button-active:active {
-    background-color: #ff3800;
-    color: #86d10a;
+    background-color: #c5c6c9;
+    color: #a9a89f;
+}
+
+.up-button-request, .down-button-request {
+    background-color: #07b100;
+    color: white;
+}
+
+.up-button-request:hover, .down-button-request:hover {
+    background-color: #00811b;
+    color: white;
 }
 
 .select-floor {

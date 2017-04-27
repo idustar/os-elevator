@@ -1,7 +1,7 @@
 /**
  * Created by dustar on 2017/4/26.
  *
- * style.js - 更新UI
+ * style.js - 修改显示，加载动画
  */
 
 function openDoor(i) {  // 开门动画
@@ -25,33 +25,40 @@ function closeDoor(i) { // 关门动画
     }, 1000)
 }
 
-function userOut(i, isTimeout = true) { // 角色离开
+function userOut(i, isTimeout = true, remain = false) { // 角色离开
     let floor = gv.ev[i].floor
     setTimeout(() => {
-        $('#user-' + i).animate({
-            fontSize: '30px',
-            opacity: '0'
-        }, 1000)
-        $('#floor-man-' + gv.ev[i].floor).fadeIn(1000)
-        setTimeout(() => {
-            $('#floor-man-' + floor).fadeOut(1000)
-        }, 1000)
+        if (!remain) {
+            $('#user-' + i).animate({
+                fontSize: '30px',
+                opacity: '0'
+            }, 1000)
+        }
+        if (!(gv.isOnWait[i].up || gv.isOnWait[i].down)) {
+            $('#floor-man-' + gv.ev[i].floor).fadeIn(1000)
+            setTimeout(() => {
+                $('#floor-man-' + floor).fadeOut(1000)
+            }, 1000)
+        }
     }, isTimeout ? 2000 : 0)
 }
 
-function userIn(i, isTimeout = true) {  // 角色进入
+function userIn(i, isTimeout = true, remain = false) {  // 角色进入
     let floor = gv.ev[i].floor
     setTimeout(()=>{
-        $('#user-'+i).animate({
-            fontSize: '16px',
-            opacity: '1'
-        }, 1000)
-        $('#floor-man-'+floor).fadeOut(1000)
+        if (!remain) {
+            $('#user-' + i).animate({
+                fontSize: '16px',
+                opacity: '1'
+            }, 1000)
+        }
+        if (!(gv.isOnWait[i].up || gv.isOnWait[i].down)) {
+            $('#floor-man-' + floor).fadeOut(1000)
+        }
     },isTimeout?3000:0)
 }
 
 function upAnim(i) {    // 上升动画
-    console.log('up'+i)
     $('#elevator-card-' + i).animate({
         top: "-=22px"
     }, 1000)
@@ -59,7 +66,6 @@ function upAnim(i) {    // 上升动画
 }
 
 function downAnim(i) {  // 下降动画
-    console.log('down'+i)
     $('#elevator-card-' + i).animate({
         top: "+=22px"
     }, 1000)
@@ -144,4 +150,30 @@ function emerAnim(i) {  // 紧急动画（警报闪烁）
             }, 500)
         }
     }, 500)
+}
+
+function changeButtonColorToRequest(floor, direction) {
+    if (direction === Enum.StateType.Up) {
+        $('#up-button-' + floor).addClass("up-button-request")
+        $('#up-button-' + floor).children().removeClass('fa-spinner')
+    }
+    else {
+        $('#down-button-' + floor).addClass("down-button-request")
+        $('#down-button-' + floor).children().removeClass('fa-spinner')
+    }
+}
+
+function removeButtonColor(floor, direction) {
+    if (direction === Enum.StateType.Up) {
+        let dom = $('#up-button-' + floor)
+        gv.isOnWait[floor].up = false
+        dom.removeClass("up-button-request")
+        dom.removeClass("up-button-active")
+    }
+    else {
+        gv.isOnWait[floor].down = false
+        let dom = $('#down-button-' + floor)
+        dom.removeClass("down-button-request")
+        dom.removeClass("down-button-active")
+    }
 }
