@@ -45,7 +45,9 @@ function userOut(i, isTimeout = true, remain = false) { // 角色离开
 }
 
 function userIn(i, isTimeout = true, remain = false) {  // 角色进入
+    console.log("userIn-ing", i, isTimeout, remain)
     let floor = gv.ev[i].floor
+    let isOnWait = !(gv.isOnWait[i].up || gv.isOnWait[i].down)
     setTimeout(()=>{
         if (!remain) {
             $('#user-' + i).animate({
@@ -53,7 +55,9 @@ function userIn(i, isTimeout = true, remain = false) {  // 角色进入
                 opacity: '1'
             }, 1000)
         }
-    },isTimeout?3000:0)
+        //if (isOnWait)
+        //    $('#floor-man-' + floor).fadeOut(1000)
+    },isTimeout ? 3000 : 0)
 }
 
 function upAnim(i) {    // 上升动画

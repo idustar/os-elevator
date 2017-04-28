@@ -1,6 +1,6 @@
-html,body{
+html,body {
     font-family: "PingFang SC", "Microsoft YaHei";
-    height:95%;
+    height: 95%;
 }
 
 .container {
@@ -30,29 +30,30 @@ html,body{
     }
 }
 
-.left-panel{
+.left-panel {
     float: left;
-    width:100px;
+    width: 100px;
     padding-top: 30px;
 }
 
-.center-panel{
-    float:left;
-    width:45%;
+.center-panel {
+    float: left;
+    width: 45%;
     height: 94%;
     text-align: center;
 }
 
-.right-panel{
+.right-panel {
     padding-left: 20px;
-    overflow:hidden;
-    overflow-y:scroll;
+    overflow: hidden;
+    overflow-y: scroll;
     height: 100%;
     max-height: 100%;
     font-size: 12px;
 }
-.floor-number{
-    float:left;
+
+.floor-number {
+    float: left;
     width: 20px;
     line-height: 20px;
 }
@@ -60,14 +61,14 @@ html,body{
 .up-button, .down-button {
     font-size: 14px;
     width: 20px;
-    padding-left:3px;
+    padding-left: 3px;
     padding-right: 3px;
     margin: 2px;
     height: 20px;
     border-radius: 50%;
     background-color: darkturquoise;
     color: white;
-    cursor:pointer;
+    cursor: pointer;
     transition: all .2s;
 }
 
@@ -75,12 +76,14 @@ html,body{
     background-color: black;
     color: darkturquoise;
 }
+
 .up-button:active, .down-button:active {
-    margin-left:4px;
+    margin-left: 4px;
     margin-right: 0px;
     background-color: #84006c;
     color: #f7e8ff;
 }
+
 .up-button-active, .down-button-active {
     background-color: #ff0069;
     color: white;
@@ -90,6 +93,7 @@ html,body{
     background-color: #ff73bf;
     color: white;
 }
+
 .up-button-active:active, .down-button-active:active {
     background-color: #c5c6c9;
     color: #a9a89f;
@@ -107,25 +111,25 @@ html,body{
 
 .select-floor {
     font-size: 14px;
-    display:-moz-inline-box;
-    display:inline-block;
+    display: -moz-inline-box;
+    display: inline-block;
     text-align: center;
     padding: 2px;
-    width:20px;
+    width: 20px;
     margin: 2px;
     height: 20px;
     border-radius: 50%;
     line-height: 20px;
     background-color: rgba(0, 0, 0, 0.3);
     color: white;
-    cursor:pointer
+    cursor: pointer
 }
 
 .select-floor:hover {
     background-color: indigo;
 }
 
-.select-floor:active{
+.select-floor:active {
     margin-left: 4px;
     margin-right: 0px;
     background-color: darkred;
@@ -133,20 +137,18 @@ html,body{
 
 .message-icon {
     font-size: 18px;
-    display:inline-block;
+    display: inline-block;
     width: 20px;
     margin-left: -20px;
-
 }
 
 #message-panel {
     line-height: 18px;
     padding-left: 20px;
-    text-indent:0px;
-
+    text-indent: 0px;
 }
 
-#message-header{
+#message-header {
     font-size: 14px;
     padding-bottom: 10px;
 }
@@ -173,11 +175,10 @@ html,body{
 }
 
 .elevator-line {
-    border-right:1px dashed #a9a89f;
+    border-right: 1px dashed #a9a89f;
     width: 30px;
     height: 530px;
 }
-
 
 .elevator-card {
     margin: 0px 5px 0px 5px;
@@ -187,9 +188,11 @@ html,body{
     position: absolute;
     top: 455px;
 }
+
 .elevator-card-active {
     box-shadow: 0 0px 10px 0 rgba(0, 179, 255, 1), 0 6px 10px 0 rgba(134, 209, 10, 1);
 }
+
 .elevator-pointer {
     background-color: #FFFFFF;
     color: #00dc20;
@@ -228,7 +231,6 @@ html,body{
     border-left: 2px rgba(0,0,0,0.5) solid;
 }
 
-
 .elevator-text-container {
     padding: 2px;
     font-size: 12px;
@@ -249,10 +251,12 @@ html,body{
     color: #b7b7b7;
     padding-top: 15px;
 }
+
 .elevator-emer>i:hover {
     color: red;
     box-shadow: #001bae 2px;
 }
+
 .elevator-emer>i:active {
     padding-left: 2px;
     color: darkred;
@@ -262,36 +266,47 @@ html,body{
 .bg-1 {
     background-color: #008AFF;
 }
+
 .bg-2 {
     background-color: #ee8811;
 }
+
 .bg-3 {
     background-color: #bb0077;
 }
+
 .bg-4 {
     background-color: #7700bb;
 }
+
 .bg-5 {
     background-color: #007788;
 }
+
 .bg-error {
     background-color: #ff003b;
 }
+
 .tc-1 {
     color: #008AFF;
 }
+
 .tc-2 {
     color: #ee8811;
 }
+
 .tc-3 {
     color: #bb0077;
 }
+
 .tc-4 {
     color: #7700bb;
 }
+
 .tc-5 {
     color: #007788;
 }
+
 .tc-error {
     color: #ff003b;
 }

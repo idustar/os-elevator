@@ -1,68 +1,64 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>电梯调度</title>
 </head>
 <body>
-    <!-- 加载动画，引入jquery及一些插件 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/loaders.css">
-    <script>
+<!-- 加载动画，引入jquery及一些插件 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/loaders.css" />
+<script>
     // 等待所有加载
     $(document).ready(
-        function(){
+        function () {
             $('body').addClass('loaded');
             $('#loader-wrapper .load_title').remove();
         }
     );
-    </script>
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-            <div class="loader-section section-left"></div>
-            <div class="loader-section section-right"></div>
-            <div class="load_title">电梯调度系统正在加载中<br><span>1552652 杜佳豪</span></div>
+</script>
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+    <div class="load_title">
+        电梯调度系统正在加载中
+        <br />
+        <span>1552652 杜佳豪</span>
     </div>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.1/jquery.toast.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <!-- END -->
-
-
-
-
-
-
-    <div class="container">
-        <div class="left-panel"><div id="floor">OUTSIDE</div>
+</div>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.1/jquery.toast.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<!-- END -->
+<div class="container">
+    <div class="left-panel">
+        <div id="floor">
+            OUTSIDE
         </div>
-        <div class="center-panel">
-
-
-        </div>
-        <div class="right-panel">
-            <div id="message" class="message">
-                <div id="message-header">
-                    消息窗口
-                </div>
-                <div id="message-panel"></div>
-                <div id="message-footer"></div>
+    </div>
+    <div class="center-panel">
+    </div>
+    <div class="right-panel">
+        <div id="message" class="message">
+            <div id="message-header">
+                消息窗口
             </div>
-        </div>
+            <div id="message-panel"></div>
+            <div id="message-footer"></div>
         </div>
     </div>
-
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.1/jquery.toast.min.js"></script>
-    <script src="js/queue.js"></script>
-    <script src="js/control.js"></script>
-    <script src="js/elevator.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/helpers.js"></script>
-    <script src="js/style.js"></script>
-    <script src="js/global.js"></script>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.1/jquery.toast.min.js"></script>
+<script src="js/queue.js"></script>
+<script src="js/control.js"></script>
+<script src="js/elevator.js"></script>
+<script src="js/main.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/style.js"></script>
+<script src="js/global.js"></script>
 </body>
 </html>

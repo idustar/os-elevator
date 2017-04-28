@@ -30,12 +30,12 @@ class Queue{
         return (this.list.findIndex(i => (i === data)) > 0? true : false)
     }
     removeByValue(val) {
-       // for(let i = 0; i < this.list.length; i++) {
-       //     if(this.list[i] === val) {
-       //         this.list.splice(i, 1);
-        //        break;
-        //    }
-       // }
+        for(let i = 0; i < this.list.length; i++) {
+            if(this.list[i] === val) {
+                this.list.splice(i, 1);
+                break;
+            }
+        }
     }
 
     clear() {
