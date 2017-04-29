@@ -46,8 +46,8 @@ function init() {
             'class="elevator-door-right bg-' + i + '" id="elevator-door-right-' + i + '">&nbsp;' +
             '</div><i class="fa fa-user fa-user-e" id="user-' + i + '"></i></div><div ' +
             'class="elevator-text-container">' + i + '号电梯</div></div><div class="elevator-line"></div>' +
-            '<div class="elevator-emer" id="elevator-emer-' + i + '" onclick="gv.ev[' + i + '].emerEvent()">' +
-            '<i class="fa fa-bell"></i></div></div>'
+            '<div class="elevator-emer" title="报警/解除报警" id="elevator-emer-' + i + '" ' +
+            'onclick="gv.ev[' + i + '].emerEvent()"><i class="fa fa-bell"></i></div></div>'
         $('.center-panel').append(code)
     }
 

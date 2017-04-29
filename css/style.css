@@ -1,6 +1,12 @@
 html,body {
     font-family: "PingFang SC", "Microsoft YaHei";
     height: 95%;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    -ms-user-select:none;
+    -khtml-user-select:none;
+    user-select:none;
+    cursor: default;
 }
 
 .container {
@@ -33,7 +39,6 @@ html,body {
 .left-panel {
     float: left;
     width: 100px;
-    padding-top: 30px;
 }
 
 .center-panel {
@@ -50,6 +55,25 @@ html,body {
     height: 100%;
     max-height: 100%;
     font-size: 12px;
+}
+
+.left-panel > img {
+    display: block;
+    height: 70px;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+
+.left-panel > img:hover{
+    margin-bottom: 3px;
+    height: 74px;
+    opacity: 0.7;
+}
+
+.left-panel > img:active{
+    height: 77px;
+    margin-bottom: 0;
+    opacity: 0.5;
 }
 
 .floor-number {
@@ -250,6 +274,7 @@ html,body {
 .elevator-emer {
     color: #b7b7b7;
     padding-top: 15px;
+    cursor: pointer;
 }
 
 .elevator-emer>i:hover {
