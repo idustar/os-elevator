@@ -1,4 +1,4 @@
 # os-elevator
 
 # Preview:
-http://think.dustark.cn/os-elevator
+https://idustar.github.io/os-elevator/index.html
