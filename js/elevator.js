@@ -248,10 +248,9 @@ class Elevator {
             // 修改显示
             $('#elevator-emer-' + this.id).children().removeClass('fa-bell-slash')
             $('#elevator-emer-' + this.id).children().addClass('fa-bell')
-            updatePointer(this.id)
             // 修改状态
             this.state = Enum.StateType.Idle
-
+            updatePointer(this.id)
             sendMessage(this.id + ' 号电梯故障排除，可以正常使用了。', 7, 'fa fa-heart', 'disemer')
         } else {
             // 修改显示
