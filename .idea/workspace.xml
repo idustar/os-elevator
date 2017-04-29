@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80ee406d-6455-468f-aa25-a8a1804ed3bc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/elevator.js" afterPath="$PROJECT_DIR$/js/elevator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/global.js" afterPath="$PROJECT_DIR$/js/global.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,18 +20,18 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
+            <state relative-caret-position="75">
               <caret line="5" column="99" lean-forward="false" selection-start-line="5" selection-start-column="99" selection-end-line="5" selection-end-column="99" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="global.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="global.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/global.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+            <state relative-caret-position="135">
+              <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -60,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="elevator.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="elevator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/elevator.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="370">
@@ -103,7 +102,7 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
+            <state relative-caret-position="750">
               <caret line="50" column="39" lean-forward="false" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
               <folding>
                 <marker date="1493362424000" expanded="true" signature="720:733" ph="..." />
@@ -117,7 +116,7 @@
       <file leaf-file-name="style.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/style.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
+            <state relative-caret-position="1740">
               <caret line="116" column="9" lean-forward="false" selection-start-line="116" selection-start-column="9" selection-end-line="116" selection-end-column="9" />
               <folding />
             </state>
@@ -183,7 +182,6 @@
         <option value="$PROJECT_DIR$/js/style.js" />
         <option value="$PROJECT_DIR$/js/wechat.wpy" />
         <option value="$PROJECT_DIR$/js/control.js" />
-        <option value="$PROJECT_DIR$/js/global.js" />
         <option value="$PROJECT_DIR$/js/helpers.js" />
         <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/js/queue.js" />
@@ -191,6 +189,7 @@
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/elevator.js" />
+        <option value="$PROJECT_DIR$/js/global.js" />
       </list>
     </option>
   </component>
@@ -226,6 +225,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -268,7 +268,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -452,11 +451,12 @@
       <workItem from="1493362155656" duration="640000" />
       <workItem from="1493392754311" duration="56000" />
       <workItem from="1493450458852" duration="74000" />
+      <workItem from="1493451364084" duration="31000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114670000" />
+    <option name="totallyTimeSpent" value="114701000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -474,12 +474,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24981412" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981412" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -645,14 +645,6 @@
     <entry file="file://$PROJECT_DIR$/css/button.css" />
     <entry file="file://$PROJECT_DIR$/css/message.css" />
     <entry file="file://$PROJECT_DIR$/css/elevator.css" />
-    <entry file="file://$PROJECT_DIR$/js/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="10" lean-forward="false" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/wechat.wpy" />
     <entry file="file://$PROJECT_DIR$/css/loaders.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -690,7 +682,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="75">
           <caret line="5" column="99" lean-forward="false" selection-start-line="5" selection-start-column="99" selection-end-line="5" selection-end-column="99" />
           <folding />
         </state>
@@ -706,7 +698,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
+        <state relative-caret-position="750">
           <caret line="50" column="39" lean-forward="false" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
           <folding>
             <marker date="1493362424000" expanded="true" signature="720:733" ph="..." />
@@ -718,7 +710,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/style.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="1740">
           <caret line="116" column="9" lean-forward="false" selection-start-line="116" selection-start-column="9" selection-end-line="116" selection-end-column="9" />
           <folding />
         </state>
@@ -728,6 +720,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="256" column="60" lean-forward="false" selection-start-line="256" selection-start-column="60" selection-end-line="256" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/global.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
           <folding />
         </state>
       </provider>
