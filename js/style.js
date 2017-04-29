@@ -45,7 +45,6 @@ function userOut(i, isTimeout = true, remain = false) { // 角色离开
 }
 
 function userIn(i, isTimeout = true, remain = false) {  // 角色进入
-    console.log("userIn-ing", i, isTimeout, remain)
     let floor = gv.ev[i].floor
     let isOnWait = !(gv.isOnWait[i].up || gv.isOnWait[i].down)
     setTimeout(()=>{
@@ -55,8 +54,6 @@ function userIn(i, isTimeout = true, remain = false) {  // 角色进入
                 opacity: '1'
             }, 1000)
         }
-        //if (isOnWait)
-        //    $('#floor-man-' + floor).fadeOut(1000)
     },isTimeout ? 3000 : 0)
 }
 
@@ -64,30 +61,76 @@ function upAnim(i) {    // 上升动画
     $('#elevator-card-' + i).animate({
         top: "-=22px"
     }, 1000)
-    changeCount(i)  // 修改数值
+    changeCount(i, true)  // 修改数值
 }
 
 function downAnim(i) {  // 下降动画
     $('#elevator-card-' + i).animate({
         top: "+=22px"
     }, 1000)
-    changeCount(i)
+    changeCount(i, false)
 }
 
-function changeCount(i){    // 修改数值
+function changeCount(i, up){    // 修改数值
     let dom = $('#elevator-count-'+i)
     let domp = $('#elevator-pointer-'+i)
-    // 数值动画
-    dom.animate({
-        fontSize: '10px',
-        opacity: '0.3'
-    }, 300,()=> {
-        dom.text(gv.ev[i].floor)
-    })
-    dom.animate({
-        fontSize: '25px',
-        opacity: '1'
-    }, 600)
+    let doms = $('#elevator-count-add-'+i)
+    let numTo = gv.ev[i].floor
+    if (up) {
+        // 数值动画
+        doms.text(numTo)
+        doms.animate({
+            top: '+=30px',
+            opacity:'0'
+        }, 0)
+        dom.animate({
+            top: '-=30px',
+            opacity:'0'
+        }, 950,()=> {
+            dom.text(numTo)
+        })
+        doms.animate({
+            top: '-=30px',
+            opacity:'1'
+        }, 950)
+        dom.animate({
+            top: '+=30px',
+            opacity:'1'
+        }, 0)
+        doms.animate({
+            opacity:'0'
+        }, 0, ()=>{
+            doms.text('')
+        })
+    } else {
+        // 数值动画
+        doms.text(numTo)
+        doms.animate({
+            top: '-=30px',
+            opacity:'0'
+        }, 0)
+        dom.animate({
+            top: '+=30px',
+            height: '0',
+            opacity:'0'
+        }, 950,()=> {
+            dom.text(numTo)
+        })
+        doms.animate({
+            top: '+=30px',
+            opacity:'1'
+        }, 950)
+        dom.animate({
+            top: '-=30px',
+            opacity:'1',
+            height: '30px'
+        }, 0)
+        doms.animate({
+            opacity:'0'
+        }, 0, ()=>{
+            doms.text('')
+        })
+    }
     updatePointerAnim(i)
     setTimeout(()=>{updatePointer(i)},1000)
 }

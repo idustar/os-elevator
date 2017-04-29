@@ -12,9 +12,9 @@ $(document).ready(function () {
 
 // 每1000ms刷新一次
 function nextTick() {
+    setTimeout(nextTick, 1000)
     manageRequest() // 处理队列中的请求
     moveElevators() // 移动电梯
-    setTimeout(nextTick, 1000)
 }
 
 function init() {
@@ -40,7 +40,9 @@ function init() {
         let code = '<div class="elevator-route"><div class="elevator-card" id="elevator-card-' + i + '"><div ' +
             'class="elevator-pointer tc-' + i + '" id="elevator-pointer-' + i + '"><i class="fa fa-circle"></i>' +
             '<span class="fa"></span></div><div class="elevator-counter  bg-' + i + '" ' +
-            'id="elevator-counter-' + i + '"><div class="elevator-count" id="elevator-count-' + i + '">1</div>' +
+            'id="elevator-counter-' + i + '">' +
+            '<div class="elevator-count" id="elevator-count-' + i + '">1</div>' +
+            '<div class="elevator-count" style="height:0px;" id="elevator-count-add-' + i + '"></div>' +
             '</div><div class="elevator-item"><div class="elevator-door-left bg-' + i +
             '" id="elevator-door-left-' + i + '">&nbsp;</div><div ' +
             'class="elevator-door-right bg-' + i + '" id="elevator-door-right-' + i + '">&nbsp;' +
